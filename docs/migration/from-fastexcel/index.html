@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-migration/from-fastexcel" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.9.2">
+<title data-rh="true">From FastExcel | Apache Fesod (Incubating)</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://fesod.apache.org/img/logo.svg"><meta data-rh="true" name="twitter:image" content="https://fesod.apache.org/img/logo.svg"><meta data-rh="true" property="og:url" content="https://fesod.apache.org/docs/migration/from-fastexcel"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" property="og:locale:alternate" content="zh_cn"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="From FastExcel | Apache Fesod (Incubating)"><meta data-rh="true" name="description" content="Complete migration guide for transitioning from cn.idev FastExcel to Apache Fesod (Incubating)"><meta data-rh="true" property="og:description" content="Complete migration guide for transitioning from cn.idev FastExcel to Apache Fesod (Incubating)"><meta data-rh="true" name="keywords" content="fesod,migration,fastexcel,apache,excel,upgrade"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://fesod.apache.org/docs/migration/from-fastexcel"><link data-rh="true" rel="alternate" href="https://fesod.apache.org/docs/migration/from-fastexcel" hreflang="en"><link data-rh="true" rel="alternate" href="https://fesod.apache.org/zh-cn/docs/migration/from-fastexcel" hreflang="zh-cn"><link data-rh="true" rel="alternate" href="https://fesod.apache.org/docs/migration/from-fastexcel" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"From FastExcel","item":"https://fesod.apache.org/docs/migration/from-fastexcel"}]}</script><link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" title="Apache Fesod (Incubating) RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/blog/atom.xml" title="Apache Fesod (Incubating) Atom Feed">
+<link rel="alternate" type="application/json" href="/blog/feed.json" title="Apache Fesod (Incubating) JSON Feed">
+
+
+
+
+
+<link rel="preconnect" href="https://analytics.apache.org/">
+<script>var _paq=window._paq=window._paq||[];_paq.push(["setRequestMethod","POST"]),_paq.push(["trackPageView"]),_paq.push(["enableLinkTracking"]),_paq.push(["enableHeartBeatTimer"]),function(){var e="https://analytics.apache.org/";_paq.push(["setRequestMethod","POST"]),_paq.push(["setTrackerUrl",e+"matomo.php"]),_paq.push(["setSiteId","83"]);var a=document,t=a.createElement("script"),p=a.getElementsByTagName("script")[0];t.type="text/javascript",t.async=!0,t.src=e+"matomo.js",p.parentNode.insertBefore(t,p)}()</script><link rel="stylesheet" href="/assets/css/styles.39082aef.css">
+<script src="/assets/js/runtime~main.39270a28.js" defer="defer"></script>
+<script src="/assets/js/main.cc5d8c04.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||"light"),document.documentElement.setAttribute("data-theme-choice",t||"light")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><link rel="preload" as="image" href="/img/logo/fesod-logo.svg"><link rel="preload" as="image" href="/img/logo/fesod-logo-white.svg"><link rel="preload" as="image" href="/img/apache-incubator.svg"><div role="region" aria-label="Skip to main content"><a class="skipToContent_ZBxE" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/logo/fesod-logo.svg" alt="" class="themedComponent_RGmo themedComponent--light_D9jF"><img src="/img/logo/fesod-logo-white.svg" alt="" class="themedComponent_RGmo themedComponent--dark_pNf4"></div><b class="navbar__title text--truncate"></b></a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/docs/">Docs</a><a class="navbar__item navbar__link" href="/blog/">Blog</a><a class="navbar__item navbar__link" href="/docs/download">Download</a><a class="navbar__item navbar__link" href="/team">Team</a><a class="navbar__item navbar__link" href="/community">Community</a><div class="navbar__item dropdown dropdown--hoverable dropdown--right"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">ASF</a><ul class="dropdown__menu"><li><a href="https://www.apache.org/" target="_blank" rel="noopener noreferrer" class="dropdown__link">Foundation</a></li><li><a href="https://www.apache.org/licenses/" target="_blank" rel="noopener noreferrer" class="dropdown__link">License</a></li><li><a href="https://www.apache.org/events/current-event.html" target="_blank" rel="noopener noreferrer" class="dropdown__link">Events</a></li><li><a href="https://privacy.apache.org/policies/privacy-policy-public.html" target="_blank" rel="noopener noreferrer" class="dropdown__link">Privacy</a></li><li><a href="https://www.apache.org/security/" target="_blank" rel="noopener noreferrer" class="dropdown__link">Security</a></li><li><a href="https://www.apache.org/foundation/sponsorship.html" target="_blank" rel="noopener noreferrer" class="dropdown__link">Sponsorship</a></li><li><a href="https://www.apache.org/foundation/thanks.html" target="_blank" rel="noopener noreferrer" class="dropdown__link">Thanks</a></li><li><a href="https://www.apache.org/foundation/policies/conduct.html" target="_blank" rel="noopener noreferrer" class="dropdown__link">Code of Conduct</a></li></ul></div><div class="navbar__item dropdown dropdown--hoverable dropdown--right"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" class="iconLanguage_H9zw"><path fill="currentColor" d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"></path></svg>English</a><ul class="dropdown__menu"><li><a href="/docs/migration/from-fastexcel" target="_self" rel="noopener noreferrer" class="dropdown__link dropdown__link--active" lang="en">English</a></li><li><a href="/zh-cn/docs/migration/from-fastexcel" target="_self" rel="noopener noreferrer" class="dropdown__link" lang="zh-cn">简体中文</a></li></ul></div><a href="https://github.com/apache/fesod" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link header-github-link"></a><div class="toggle_DtlX colorModeToggle_PNL6"><button class="clean-btn toggleButton_QcP7 toggleButtonDisabled_ViQU" type="button" disabled="" title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_fWJh lightToggleIcon_eTfE"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_fWJh darkToggleIcon_x4f5"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_fWJh systemToggleIcon_VXFv"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_MI_m"><div class="navbar__search searchBarContainer_Ukif" dir="ltr"><input placeholder="Search" aria-label="Search" class="navbar__search-input searchInput_qsat" value=""><div class="loadingRing_QpA4 searchBarLoadingRing_Gk2a"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_cYTP"><div class="docsWrapper__YCi"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_yPqi" type="button"></button><div class="docRoot_REtH"><aside class="theme-doc-sidebar-container docSidebarContainer_eMET"><div class="sidebarViewport_JcsD"><div class="sidebar_tuiS"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_LfsS"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/docs/"><span title="Introduction" class="linkLabel_PCEX">Introduction</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_z0TE menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/docs/quickstart/guide"><span title="Quick Start" class="categoryLinkLabel_hViE">Quick Start</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_z0TE menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/docs/sheet/read/simple"><span title="Fesod Sheet" class="categoryLinkLabel_hViE">Fesod Sheet</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_z0TE menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role="button" aria-expanded="true" href="/docs/migration/from-fastexcel"><span title="Migration" class="categoryLinkLabel_hViE">Migration</span></a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/docs/migration/from-fastexcel"><span title="From FastExcel" class="linkLabel_PCEX">From FastExcel</span></a></li></ul></li></ul></nav></div></div></aside><main class="docMainContainer_fUq1"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_eMsr"><div class="docItemContainer_nxL0"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_gNuw" aria-label="Breadcrumbs"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_miFm"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><span class="breadcrumbs__link">Migration</span></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">From FastExcel</span></li></ul></nav><div class="tocCollapsible_AfK5 theme-doc-toc-mobile tocMobile_yRI5"><button type="button" class="clean-btn tocCollapsibleButton_XU7R">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>Migration Guide: FastExcel to Apache Fesod (Incubating)</h1></header>
+<h2 class="anchor anchorTargetStickyNavbar_UO6H" id="overview">Overview<a href="#overview" class="hash-link" aria-label="Direct link to Overview" title="Direct link to Overview" translate="no">​</a></h2>
+<p>This guide provides a comprehensive roadmap for migrating applications from cn.idev FastExcel library to Apache Fesod (Incubating). Apache Fesod (Incubating) is the evolution of this project, now under the Apache Software Foundation (Incubating), offering the same high-performance Excel processing capabilities with enhanced community support and long-term sustainability.</p>
+<h3 class="anchor anchorTargetStickyNavbar_UO6H" id="why-migrate">Why Migrate?<a href="#why-migrate" class="hash-link" aria-label="Direct link to Why Migrate?" title="Direct link to Why Migrate?" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Apache Foundation Support</strong>: Apache Fesod (Incubating) is now part of the Apache Software Foundation, ensuring long-term maintenance and community-driven development</li>
+<li class=""><strong>Seamless Transition</strong>: The API remains virtually identical, requiring minimal code changes</li>
+<li class=""><strong>Enhanced Branding</strong>: Unified naming conventions under the Apache Fesod (Incubating) umbrella</li>
+<li class=""><strong>Continued Innovation</strong>: Access to future enhancements and features under active Apache governance</li>
+<li class=""><strong>Backward Compatibility</strong>: Deprecated aliases (FastExcel) are temporarily maintained for gradual migration</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_UO6H" id="migration-scope">Migration Scope<a href="#migration-scope" class="hash-link" aria-label="Direct link to Migration Scope" title="Direct link to Migration Scope" translate="no">​</a></h3>
+<p>This migration primarily involves:</p>
+<ol>
+<li class="">Updating Maven/Gradle dependencies</li>
+<li class="">Replacing deprecated class names with FesodSheet</li>
+<li class="">Updating package imports</li>
+<li class="">Verifying functionality through comprehensive testing</li>
+</ol>
+<p>The core API, annotations, and processing logic remain unchanged, ensuring a low-risk migration path.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_UO6H" id="migration-steps">Migration Steps<a href="#migration-steps" class="hash-link" aria-label="Direct link to Migration Steps" title="Direct link to Migration Steps" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_UO6H" id="step-1-update-dependencies">Step 1: Update Dependencies<a href="#step-1-update-dependencies" class="hash-link" aria-label="Direct link to Step 1: Update Dependencies" title="Direct link to Step 1: Update Dependencies" translate="no">​</a></h3>
+<p>Replace your existing dependency with Apache Fesod (Incubating):</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Source</th><th>GroupId</th><th>ArtifactId</th><th>Version</th></tr></thead><tbody><tr><td><strong>cn.idev FastExcel</strong></td><td>cn.idev.excel</td><td>fastexcel</td><td>1.3.0</td></tr><tr><td><strong>Apache Fesod (Incubating)</strong> ✅</td><td>org.apache.fesod</td><td>fesod</td><td>1.3.0+</td></tr></tbody></table>
+<p><strong>Maven:</strong></p>
+<div class="language-xml codeBlockContainer_Q4Br theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_LEBR"><pre tabindex="0" class="prism-code language-xml codeBlock_OThs thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_Za6U"><span class="token-line" style="color:#393A34"><span class="token tag punctuation" style="color:#393A34">&lt;</span><span class="token tag" style="color:#00009f">dependency</span><span class="token tag punctuation" style="color:#393A34">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token tag punctuation" style="color:#393A34">&lt;</span><span class="token tag" style="color:#00009f">groupId</span><span class="token tag punctuation" style="color:#393A34">&gt;</span><span class="token plain">org.apache.fesod</span><span class="token tag punctuation" style="color:#393A34">&lt;/</span><span class="token tag" style="color:#00009f">groupId</span><span class="token tag punctuation" style="color:#393A34">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token tag punctuation" style="color:#393A34">&lt;</span><span class="token tag" style="color:#00009f">artifactId</span><span class="token tag punctuation" style="color:#393A34">&gt;</span><span class="token plain">fesod</span><span class="token tag punctuation" style="color:#393A34">&lt;/</span><span class="token tag" style="color:#00009f">artifactId</span><span class="token tag punctuation" style="color:#393A34">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token tag punctuation" style="color:#393A34">&lt;</span><span class="token tag" style="color:#00009f">version</span><span class="token tag punctuation" style="color:#393A34">&gt;</span><span class="token plain">1.3.0</span><span class="token tag punctuation" style="color:#393A34">&lt;/</span><span class="token tag" style="color:#00009f">version</span><span class="token tag punctuation" style="color:#393A34">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token tag punctuation" style="color:#393A34">&lt;/</span><span class="token tag" style="color:#00009f">dependency</span><span class="token tag punctuation" style="color:#393A34">&gt;</span><br></span></code></pre></div></div>
+<p><strong>Gradle:</strong></p>
+<div class="language-gradle codeBlockContainer_Q4Br theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_LEBR"><pre tabindex="0" class="prism-code language-gradle codeBlock_OThs thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_Za6U"><span class="token-line" style="color:#393A34"><span class="token plain">implementation &#x27;org.apache.fesod:fesod:1.3.0&#x27;</span><br></span></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_UO6H" id="step-2-package-import-updates">Step 2: Package Import Updates<a href="#step-2-package-import-updates" class="hash-link" aria-label="Direct link to Step 2: Package Import Updates" title="Direct link to Step 2: Package Import Updates" translate="no">​</a></h3>
+<p>Update all import statements to use the new Apache Fesod (Incubating) package structure.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Old Package (Deprecated)</th><th>New Package (Required)</th></tr></thead><tbody><tr><td>cn.idev.excel.*</td><td>org.apache.fesod.sheet.*</td></tr></tbody></table>
+<p><strong>Common Import Replacements:</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Before</th><th>After</th></tr></thead><tbody><tr><td>import cn.idev.excel.FastExcel;</td><td>import org.apache.fesod.sheet.FesodSheet;</td></tr><tr><td>import cn.idev.excel.FastExcelFactory;</td><td>import org.apache.fesod.sheet.FesodSheet;</td></tr><tr><td>import cn.idev.excel.ExcelReader;</td><td>import org.apache.fesod.sheet.ExcelReader;</td></tr><tr><td>import cn.idev.excel.ExcelWriter;</td><td>import org.apache.fesod.sheet.ExcelWriter;</td></tr><tr><td>import cn.idev.excel.annotation.ExcelProperty;</td><td>import org.apache.fesod.sheet.annotation.ExcelProperty;</td></tr><tr><td>import cn.idev.excel.context.AnalysisContext;</td><td>import org.apache.fesod.sheet.context.AnalysisContext;</td></tr><tr><td>import cn.idev.excel.read.listener.ReadListener;</td><td>import org.apache.fesod.sheet.read.listener.ReadListener;</td></tr></tbody></table>
+<h3 class="anchor anchorTargetStickyNavbar_UO6H" id="step-3-class-name-migration">Step 3: Class Name Migration<a href="#step-3-class-name-migration" class="hash-link" aria-label="Direct link to Step 3: Class Name Migration" title="Direct link to Step 3: Class Name Migration" translate="no">​</a></h3>
+<p>Replace deprecated entry point classes with FesodSheet.</p>
+<h4 class="anchor anchorTargetStickyNavbar_UO6H" id="migration-from-fastexcelfastexcelfactory">Migration from FastExcel/FastExcelFactory<a href="#migration-from-fastexcelfastexcelfactory" class="hash-link" aria-label="Direct link to Migration from FastExcel/FastExcelFactory" title="Direct link to Migration from FastExcel/FastExcelFactory" translate="no">​</a></h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Operation</th><th>Before (FastExcel)</th><th>After (FesodSheet)</th></tr></thead><tbody><tr><td><strong>Simple Read</strong></td><td>FastExcel.read(file, Data.class, listener)</td><td>FesodSheet.read(file, Data.class, listener)</td></tr><tr><td><strong>Simple Write</strong></td><td>FastExcel.write(file, Data.class)</td><td>FesodSheet.write(file, Data.class)</td></tr><tr><td><strong>Read Sheet</strong></td><td>FastExcelFactory.readSheet(0)</td><td>FesodSheet.readSheet(0)</td></tr><tr><td><strong>Write Sheet</strong></td><td>FastExcelFactory.writerSheet(&quot;Sheet1&quot;)</td><td>FesodSheet.writerSheet(&quot;Sheet1&quot;)</td></tr><tr><td><strong>Read with Stream</strong></td><td>FastExcel.read(inputStream)</td><td>FesodSheet.read(inputStream)</td></tr><tr><td><strong>Write with Stream</strong></td><td>FastExcel.write(outputStream)</td><td>FesodSheet.write(outputStream)</td></tr></tbody></table>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_UO6H" id="migration-strategies">Migration Strategies<a href="#migration-strategies" class="hash-link" aria-label="Direct link to Migration Strategies" title="Direct link to Migration Strategies" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_UO6H" id="gradual-migration-recommended">Gradual Migration (Recommended)<a href="#gradual-migration-recommended" class="hash-link" aria-label="Direct link to Gradual Migration (Recommended)" title="Direct link to Gradual Migration (Recommended)" translate="no">​</a></h3>
+<p>Utilize the deprecated alias classes for a phased migration approach.</p>
+<p><strong>Phase 1: Dependency Update Only</strong></p>
+<ul>
+<li class="">Update Maven/Gradle dependency to Apache Fesod (Incubating)</li>
+<li class="">Keep using FastExcel classes (now deprecated aliases)</li>
+<li class="">Update package imports only</li>
+<li class="">Run comprehensive tests to verify compatibility</li>
+</ul>
+<p><strong>Phase 2: Class Name Migration</strong></p>
+<ul>
+<li class="">Progressively replace deprecated classes with FesodSheet</li>
+<li class="">Use IDE refactoring tools for bulk renaming</li>
+<li class="">Migrate module by module or feature by feature</li>
+<li class="">Maintain thorough test coverage throughout</li>
+</ul>
+<p><strong>Phase 3: Cleanup</strong></p>
+<ul>
+<li class="">Remove all references to deprecated classes</li>
+<li class="">Resolve deprecation warnings</li>
+<li class="">Update documentation and code comments</li>
+</ul>
+<p><strong>Benefits:</strong></p>
+<ul>
+<li class="">Lower risk through incremental changes</li>
+<li class="">Easier rollback if issues arise</li>
+<li class="">Minimal disruption to ongoing development</li>
+<li class="">Allows time for thorough testing at each phase</li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_UO6H" id="conclusion">Conclusion<a href="#conclusion" class="hash-link" aria-label="Direct link to Conclusion" title="Direct link to Conclusion" translate="no">​</a></h2>
+<p>Migrating from cn.idev FastExcel to Apache Fesod (Incubating) is a straightforward process due to the high degree of API compatibility and backward-compatible deprecated aliases. The primary effort involves updating dependency declarations and package imports, with minimal to no logic changes required.</p>
+<p>The gradual migration strategy, supported by the temporary deprecated aliases (FastExcel, FastExcelFactory), allows teams to migrate at their own pace while maintaining full functionality.</p>
+<p>By following this guide, organizations can seamlessly transition to Apache Fesod (Incubating) and benefit from the long-term sustainability and community support of the Apache Software Foundation ecosystem.</p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_OQrT"><a href="https://github.com/apache/fesod/edit/main/website/docs/migration/from-fastexcel.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_AgbJ" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_NK8p"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/docs/sheet/help/faq"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">FAQ</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_sGfz thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#overview" class="table-of-contents__link toc-highlight">Overview</a><ul><li><a href="#why-migrate" class="table-of-contents__link toc-highlight">Why Migrate?</a></li><li><a href="#migration-scope" class="table-of-contents__link toc-highlight">Migration Scope</a></li></ul></li><li><a href="#migration-steps" class="table-of-contents__link toc-highlight">Migration Steps</a><ul><li><a href="#step-1-update-dependencies" class="table-of-contents__link toc-highlight">Step 1: Update Dependencies</a></li><li><a href="#step-2-package-import-updates" class="table-of-contents__link toc-highlight">Step 2: Package Import Updates</a></li><li><a href="#step-3-class-name-migration" class="table-of-contents__link toc-highlight">Step 3: Class Name Migration</a></li></ul></li><li><a href="#migration-strategies" class="table-of-contents__link toc-highlight">Migration Strategies</a><ul><li><a href="#gradual-migration-recommended" class="table-of-contents__link toc-highlight">Gradual Migration (Recommended)</a></li></ul></li><li><a href="#conclusion" class="table-of-contents__link toc-highlight">Conclusion</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer"><div class="container container-fluid"><div class="footer__bottom text--center"><div class="margin-bottom--sm"><a href="https://incubator.apache.org/" rel="noopener noreferrer" class="footerLogoLink_OPFY"><img src="/img/apache-incubator.svg" alt="Apache Incubator logo" class="footer__logo themedComponent_RGmo themedComponent--light_D9jF" width="200"><img src="/img/apache-incubator.svg" alt="Apache Incubator logo" class="footer__logo themedComponent_RGmo themedComponent--dark_pNf4" width="200"></a></div><div class="footer__copyright"><br><p>Apache Fesod (Incubating) is an effort undergoing incubation at The Apache Software Foundation (ASF), sponsored by the Apache Incubator. Incubation is required of all newly accepted projects until a further review indicates that the infrastructure, communications, and decision making process have stabilized in a manner consistent with other successful ASF projects. While incubation status is not necessarily a reflection of the completeness or stability of the code, it does indicate that the project has yet to be fully endorsed by the ASF.</p><p>Copyright © 2025 The Apache Software Foundation, Licensed under the Apache License, Version 2.0.</p><p>Apache, the names of Apache projects, and the feather logo are either registered trademarks or trademarks of the Apache Software Foundation in the United States and/or other countries. All other marks mentioned may be trademarks or registered trademarks of their respective owners.</p></div></div></div></footer></div>
+</body>
+</html>
