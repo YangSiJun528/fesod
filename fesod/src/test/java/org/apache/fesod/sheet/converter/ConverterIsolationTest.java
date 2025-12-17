@@ -22,7 +22,6 @@ package org.apache.fesod.sheet.converter;
 import static org.junit.jupiter.api.Assertions.*;
 import java.io.File;
 import java.util.ArrayList;
-
 import org.apache.fesod.sheet.ExcelReader;
 import org.apache.fesod.sheet.ExcelWriter;
 import org.apache.fesod.sheet.FesodSheet;
@@ -97,19 +96,15 @@ public class ConverterIsolationTest {
     public void testReaderConverterIsolation() {
         File testFile = TestFileUtil.createNewFile("converter_isolation_test.xlsx");
 
-        FesodSheet.write(testFile, TestData.class)
-                .sheet()
-                .doWrite(new ArrayList<>());
+        FesodSheet.write(testFile, TestData.class).sheet().doWrite(new ArrayList<>());
 
         ExcelReader reader1 = FesodSheet.read(testFile, TestData.class, null)
                 .registerConverter(new ReadConverterA())
                 .build();
 
-        ExcelReader reader2 = FesodSheet.read(testFile, TestData.class, null)
-                .build();
+        ExcelReader reader2 = FesodSheet.read(testFile, TestData.class, null).build();
 
-        boolean leaked = reader2.analysisContext().currentReadHolder()
-                .converterMap().values().stream()
+        boolean leaked = reader2.analysisContext().currentReadHolder().converterMap().values().stream()
                 .anyMatch(c -> c instanceof ReadConverterA);
 
         reader1.finish();
